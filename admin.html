@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benny's | Espace Direction</title>
+<style>
+  :root{
+    --black:#0b0b0d;
+    --dark:#141416;
+    --card:#1c1c1f;
+    --orange:#ff6a00;
+    --orange-light:#ff8c2e;
+    --grey:#8a8a90;
+    --white:#f4f4f5;
+    --discord:#5865F2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--black);
+    color:var(--white);
+    font-family:'Segoe UI', Arial, sans-serif;
+    line-height:1.6;
+    min-height:100vh;
+  }
+  a{text-decoration:none;color:inherit;}
+
+  /* LOGIN GATE */
+  #loginGate{
+    position:fixed;inset:0;z-index:1000;
+    background:radial-gradient(ellipse at center, rgba(255,106,0,0.12), transparent 65%), var(--black);
+    display:flex;align-items:center;justify-content:center;
+    padding:24px;
+  }
+  #loginGate.hidden{display:none;}
+  .login-card{
+    background:var(--dark);
+    border:1px solid #2a2a2e;
+    border-radius:16px;
+    padding:44px 36px;
+    max-width:380px;width:100%;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  }
+  .login-card h2{font-size:1.4rem;font-weight:800;margin-bottom:8px;}
+  .login-card p{color:var(--grey);font-size:0.9rem;margin-bottom:24px;}
+  .login-card input{
+    width:100%;background:var(--black);border:1px solid #2a2a2e;
+    border-radius:8px;padding:12px 14px;color:var(--white);
+    font-size:0.95rem;margin-bottom:14px;text-align:center;
+  }
+  .login-card input:focus{outline:none;border-color:var(--orange);}
+  .login-card button{
+    width:100%;background:var(--orange);color:#0b0b0d;
+    border:none;border-radius:8px;padding:12px;font-weight:700;
+    cursor:pointer;font-size:0.95rem;transition:background .2s;
+  }
+  .login-card button:hover{background:var(--orange-light);}
+  .login-error{color:#ff5555;font-size:0.85rem;margin-top:12px;display:none;}
+
+  /* DASHBOARD */
+  #dashboard{display:none;}
+  #dashboard.visible{display:block;}
+  header{
+    padding:20px 24px;border-bottom:2px solid var(--orange);
+    display:flex;align-items:center;justify-content:space-between;
+    flex-wrap:wrap;gap:12px;
+  }
+  .logo{font-size:1.3rem;font-weight:800;}
+  .logo span{color:var(--orange);}
+  .logout-btn{
+    background:transparent;border:1px solid var(--grey);color:var(--grey);
+    padding:8px 16px;border-radius:6px;font-size:0.85rem;cursor:pointer;
+    transition:border-color .2s, color .2s;
+  }
+  .logout-btn:hover{border-color:var(--orange);color:var(--orange);}
+  main{max-width:900px;margin:0 auto;padding:50px 24px;}
+  main h1{font-size:1.9rem;margin-bottom:8px;}
+  main > p.sub{color:var(--grey);margin-bottom:40px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(260px,1fr));gap:20px;}
+  .panel{
+    background:var(--card);border:1px solid #2a2a2e;border-radius:12px;
+    padding:26px;
+  }
+  .panel .tag{
+    display:inline-block;background:rgba(255,106,0,0.12);color:var(--orange);
+    font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;
+    padding:4px 10px;border-radius:20px;margin-bottom:14px;
+  }
+  .panel h3{font-size:1.1rem;margin-bottom:10px;}
+  .panel p{color:var(--grey);font-size:0.9rem;margin-bottom:16px;}
+  .panel a.action{
+    display:inline-block;background:var(--orange);color:#0b0b0d;
+    padding:9px 18px;border-radius:6px;font-weight:700;font-size:0.85rem;
+  }
+  .panel a.action.discord{background:var(--discord);color:#fff;}
+  .note{
+    margin-top:40px;background:var(--card);border:1px solid #2a2a2e;
+    border-radius:12px;padding:22px 26px;color:var(--grey);font-size:0.88rem;
+  }
+  .note b{color:var(--white);}
+</style>
+</head>
+<body>
+
+<div id="loginGate">
+  <div class="login-card">
+    <h2>Espace Direction</h2>
+    <p>Accès réservé à la direction de Benny's Original Motor Works.</p>
+    <input type="password" id="pwd" placeholder="Mot de passe" onkeydown="if(event.key==='Enter')tryLogin()">
+    <button onclick="tryLogin()">Se connecter</button>
+    <p class="login-error" id="loginError">Mot de passe incorrect.</p>
+  </div>
+</div>
+
+<div id="dashboard">
+  <header>
+    <div class="logo">BENNY'S <span>DIRECTION</span></div>
+    <button class="logout-btn" onclick="logout()">Se déconnecter</button>
+  </header>
+  <main>
+    <h1>Tableau de bord</h1>
+    <p class="sub">Retrouve ici tout ce qu'il te faut pour gérer le recrutement et le garage.</p>
+
+    <div class="grid">
+      <div class="panel">
+        <span class="tag">Candidatures</span>
+        <h3>Suivi des candidatures</h3>
+        <p>Chaque candidature envoyée depuis le site atterrit automatiquement dans ton salon Discord dédié.</p>
+        <a class="action discord" href="https://discord.gg/WZw8T2vHU" target="_blank" rel="noopener">Ouvrir Discord</a>
+      </div>
+
+      <div class="panel">
+        <span class="tag">Site web</span>
+        <h3>Voir le site public</h3>
+        <p>Accède à la page de recrutement telle que la voient les candidats.</p>
+        <a class="action" href="index.html">Voir le site</a>
+      </div>
+
+      <div class="panel">
+        <span class="tag">Communauté</span>
+        <h3>Serveur Discord</h3>
+        <p>Rejoins le serveur pour discuter avec l'équipe et gérer les nouvelles recrues.</p>
+        <a class="action discord" href="https://discord.gg/WZw8T2vHU" target="_blank" rel="noopener">Rejoindre</a>
+      </div>
+    </div>
+
+    <div class="note">
+      <b>À savoir :</b> ce site étant hébergé simplement (sans base de données), l'historique complet des candidatures se trouve dans ton salon Discord, pas ici. Pour toute modification du site (postes, textes, design), il suffit de le demander directement.
+    </div>
+  </main>
+</div>
+
+<script>
+  const ADMIN_PASSWORD = "BennysDirection2026";
+
+  function tryLogin(){
+    const val = document.getElementById('pwd').value;
+    if (val === ADMIN_PASSWORD) {
+      document.getElementById('loginGate').classList.add('hidden');
+      document.getElementById('dashboard').classList.add('visible');
+      sessionStorage.setItem('bennysAdminAuth', '1');
+    } else {
+      document.getElementById('loginError').style.display = 'block';
+    }
+  }
+  function logout(){
+    sessionStorage.removeItem('bennysAdminAuth');
+    document.getElementById('dashboard').classList.remove('visible');
+    document.getElementById('loginGate').classList.remove('hidden');
+    document.getElementById('pwd').value = '';
+  }
+  if (sessionStorage.getItem('bennysAdminAuth') === '1') {
+    document.getElementById('loginGate').classList.add('hidden');
+    document.getElementById('dashboard').classList.add('visible');
+  }
+</script>
+
+</body>
+</html>
