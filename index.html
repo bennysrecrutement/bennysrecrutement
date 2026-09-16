@@ -383,6 +383,67 @@
     .form-grid-2{grid-template-columns:1fr;}
     .form-wrap{padding:28px;}
   }
+
+  /* TARIFS */
+  .tarifs-grid{
+    display:grid;grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+    gap:24px;
+  }
+  .tarif-card{
+    background:var(--card);border:1px solid #2a2a2e;border-radius:12px;
+    padding:30px 24px;text-align:center;transition:transform .2s, border-color .2s;
+  }
+  .tarif-card:hover{transform:translateY(-6px);border-color:var(--orange);}
+  .tarif-card .price{
+    font-size:2.1rem;font-weight:900;color:var(--orange);margin-bottom:10px;
+  }
+  .tarif-card h3{font-size:1rem;color:var(--white);font-weight:700;}
+  .tarifs-note{
+    text-align:center;color:var(--grey);font-size:0.85rem;margin-top:30px;
+  }
+
+  /* PARTENAIRES */
+  .partners-grid{
+    display:grid;grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+    gap:24px;
+  }
+  .partner-card{
+    background:var(--card);border:1px dashed #2a2a2e;border-radius:12px;
+    padding:34px 20px;text-align:center;color:var(--grey);
+  }
+  .partner-card .p-icon{font-size:1.8rem;margin-bottom:10px;}
+  .partner-card h4{color:var(--white);font-size:0.95rem;margin-bottom:6px;}
+  .partner-card p{font-size:0.82rem;}
+  .partners-cta{
+    text-align:center;margin-top:34px;
+  }
+
+  /* AVIS CLIENTS */
+  .testimonials-grid{
+    display:grid;grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+    gap:24px;
+  }
+  .testimonial-card{
+    background:var(--card);border:1px solid #2a2a2e;border-radius:12px;
+    padding:28px 26px;
+  }
+  .testimonial-card .stars{color:var(--orange);margin-bottom:14px;font-size:0.95rem;letter-spacing:2px;}
+  .testimonial-card p.quote{color:var(--white);font-size:0.94rem;margin-bottom:16px;font-style:italic;}
+  .testimonial-card .author{color:var(--grey);font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;}
+
+  /* RDV TYPE SELECT */
+  .rdv-types{
+    display:grid;grid-template-columns:repeat(3, 1fr);gap:12px;margin-bottom:20px;
+  }
+  .rdv-type-option{
+    background:var(--black);border:1px solid #2a2a2e;border-radius:8px;
+    padding:14px 10px;text-align:center;cursor:pointer;font-size:0.85rem;font-weight:700;
+    transition:border-color .2s, color .2s;color:var(--grey);
+  }
+  .rdv-type-option.active{border-color:var(--orange);color:var(--orange);}
+  @media (max-width:600px){
+    .rdv-types{grid-template-columns:1fr;}
+  }
 </style>
 </head>
 <body>
@@ -423,9 +484,12 @@
     <div class="logo">BENNY'S <span>ORIGINAL MOTOR WORKS</span></div>
     <div class="nav-links">
       <a href="#about">Qui sommes-nous</a>
+      <a href="#tarifs">Tarifs</a>
       <a href="#postes">Postes</a>
-      <a href="#conditions">Conditions</a>
+      <a href="#rdv">Rendez-vous</a>
       <a href="#postuler">Candidature</a>
+      <a href="#partenaires">Partenaires</a>
+      <a href="#avis">Avis</a>
     </div>
     <a href="#postuler" class="btn">Postuler</a>
   </nav>
@@ -442,6 +506,13 @@
     </div>
   </div>
 </section>
+
+<div class="stats">
+  <div class="stat"><b>+50</b><span>Membres actifs</span></div>
+  <div class="stat"><b>24/7</b><span>Garage ouvert</span></div>
+  <div class="stat"><b>5</b><span>Postes disponibles</span></div>
+  <div class="stat"><b>1er</b><span>Garage de Los Santos</span></div>
+</div>
 
 <section id="about">
   <div class="container">
@@ -460,10 +531,40 @@
           <li>Une équipe soudée et une ambiance familiale</li>
           <li>Formation complète au poste, débutants acceptés</li>
           <li>Événements RP réguliers (courses, expos, contrats)</li>
-          <li>Évolution possible du grade Apprenti jusqu'à Directeur référant</li>
+          <li>Évolution possible du grade Apprenti jusqu'à Directeur Référent</li>
         </ul>
       </div>
     </div>
+  </div>
+</section>
+
+
+<section id="tarifs">
+  <div class="container">
+    <div class="section-title">
+      <p class="eyebrow">Nos prestations</p>
+      <h2>Tarifs</h2>
+      <p class="desc">Des prix clairs et fixes pour toutes les interventions du garage.</p>
+    </div>
+    <div class="tarifs-grid">
+      <div class="tarif-card">
+        <div class="price">1000$</div>
+        <h3>Réparation</h3>
+      </div>
+      <div class="tarif-card">
+        <div class="price">1000$</div>
+        <h3>Dépannage Sud</h3>
+      </div>
+      <div class="tarif-card">
+        <div class="price">1400$</div>
+        <h3>Dépannage Nord</h3>
+      </div>
+      <div class="tarif-card">
+        <div class="price">500$</div>
+        <h3>Kit de réparation / Kit de nettoyage</h3>
+      </div>
+    </div>
+    <p class="tarifs-note">Tarifs indicatifs, susceptibles d'ajustement selon l'état du véhicule et l'intervention nécessaire.</p>
   </div>
 </section>
 
@@ -479,26 +580,31 @@
         <div class="icon">🧰</div>
         <h3>Apprenti Mécanicien</h3>
         <p>Poste d'entrée, formation assurée par l'équipe. Idéal pour découvrir le RP mécanique chez Benny's.</p>
+        <span class="tag">Débutant accepté</span>
       </div>
       <div class="card">
         <div class="icon">🔧</div>
         <h3>Mécanicien</h3>
         <p>Réparation, entretien et diagnostics des véhicules clients en autonomie sur les tâches courantes.</p>
+        <span class="tag">Postes ouverts</span>
       </div>
       <div class="card">
         <div class="icon">⚙️</div>
         <h3>Mécanicien Confirmé</h3>
         <p>Prise en charge des interventions complexes et des customisations avancées, encadrement des apprentis.</p>
+        <span class="tag">Expérience requise</span>
       </div>
       <div class="card">
         <div class="icon">👥</div>
         <h3>Chef d'Équipe</h3>
         <p>Organisation des plannings, supervision d'une équipe de mécaniciens et suivi qualité des prestations.</p>
+        <span class="tag">Sur dossier</span>
       </div>
       <div class="card">
         <div class="icon">👔</div>
         <h3>Directeur Référent</h3>
         <p>Gestion globale du garage, représentation de Benny's et décisions stratégiques du personnel.</p>
+        <span class="tag">Poste unique</span>
       </div>
     </div>
   </div>
@@ -613,6 +719,57 @@
   </div>
 </section>
 
+
+<!-- ===== APPOINTMENT / RDV FORM ===== -->
+<section id="rdv">
+  <div class="container">
+    <div class="section-title">
+      <p class="eyebrow">Sur rendez-vous</p>
+      <h2>Prends rendez-vous</h2>
+      <p class="desc">Réparation, custom ou intervention entreprise — réserve ton créneau directement depuis le site.</p>
+    </div>
+
+    <div class="form-wrap">
+      <form id="rdvForm">
+        <div class="rdv-types" id="rdvTypes">
+          <div class="rdv-type-option active" data-type="Réparation">🔧 Réparation</div>
+          <div class="rdv-type-option" data-type="Custom">🎨 Custom</div>
+          <div class="rdv-type-option" data-type="Rendez-vous entreprise">🏢 Entreprise</div>
+        </div>
+        <input type="hidden" id="rdvType" value="Réparation">
+
+        <div class="form-grid-2">
+          <div class="form-row">
+            <label for="rdvName">Nom / Prénom RP</label>
+            <input type="text" id="rdvName" required placeholder="Ex: John Doe">
+          </div>
+          <div class="form-row">
+            <label for="rdvDiscord">Pseudo Discord</label>
+            <input type="text" id="rdvDiscord" required placeholder="Ex: pseudo#0000 ou @pseudo">
+          </div>
+        </div>
+        <div class="form-grid-2">
+          <div class="form-row">
+            <label for="rdvVehicule">Véhicule concerné</label>
+            <input type="text" id="rdvVehicule" placeholder="Ex: Karin Sultan RS">
+          </div>
+          <div class="form-row">
+            <label for="rdvDate">Date / heure souhaitée</label>
+            <input type="text" id="rdvDate" required placeholder="Ex: Samedi 20h">
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="rdvDetails">Détails de la demande</label>
+          <textarea id="rdvDetails" required placeholder="Décris ta demande (panne, projet custom, besoin entreprise...)"></textarea>
+        </div>
+        <button type="submit" class="btn form-submit">Envoyer ma demande de rendez-vous</button>
+        <div class="form-msg" id="rdvMsg"></div>
+      </form>
+      <p class="form-note">Une fois ta demande envoyée, l'équipe Benny's te confirme ton rendez-vous directement sur Discord grâce au pseudo renseigné ci-dessus.</p>
+    </div>
+  </div>
+</section>
+
 <section id="contact">
   <div class="container">
     <div class="cta">
@@ -626,17 +783,72 @@
   </div>
 </section>
 
+
+<!-- ===== PARTENAIRES ===== -->
+<section id="partenaires">
+  <div class="container">
+    <div class="section-title">
+      <p class="eyebrow">Ils nous soutiennent</p>
+      <h2>Nos partenaires</h2>
+      <p class="desc">Benny's travaille main dans la main avec plusieurs entreprises et organisations de Los Santos.</p>
+    </div>
+    <div class="partners-grid">
+      <div class="partner-card">
+        <div class="p-icon">🤝</div>
+        <h4>Emplacement disponible</h4>
+        <p>Devenez partenaire officiel de Benny's</p>
+      </div>
+      <div class="partner-card">
+        <div class="p-icon">🤝</div>
+        <h4>Emplacement disponible</h4>
+        <p>Devenez partenaire officiel de Benny's</p>
+      </div>
+      <div class="partner-card">
+        <div class="p-icon">🤝</div>
+        <h4>Emplacement disponible</h4>
+        <p>Devenez partenaire officiel de Benny's</p>
+      </div>
+    </div>
+    <div class="partners-cta">
+      <a href="https://discord.gg/WZw8T2vHU" target="_blank" rel="noopener" class="btn btn-outline">Devenir partenaire</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AVIS CLIENTS ===== -->
+<section id="avis" style="background:var(--dark);border-top:1px solid #2a2a2e;border-bottom:1px solid #2a2a2e;">
+  <div class="container">
+    <div class="section-title">
+      <p class="eyebrow">Ils nous font confiance</p>
+      <h2>Avis clients</h2>
+      <p class="desc">Ce que nos clients pensent du garage Benny's.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"Intervention rapide et travail soigné, je recommande le garage les yeux fermés."</p>
+        <div class="author">Client Benny's</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"Super équipe, à l'écoute et de vrais passionnés de mécanique."</p>
+        <div class="author">Client Benny's</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"Le dépannage est arrivé en un temps record, service au top."</p>
+        <div class="author">Client Benny's</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <p><span class="foot-logo">BENNY'S ORIGINAL MOTOR WORKS</span> — Serveur GTA RP</p>
   <p>Ce site est un projet de fan / communauté, non affilié à Rockstar Games ni à Discord Inc.</p>
 </footer>
 
 <script>
-  // ==========================================================
-  // Pour recevoir les candidatures directement dans un salon Discord :
-  // 1. Sur ton serveur Discord, va dans le salon souhaité > Paramètres > Intégrations > Webhooks > Créer un webhook
-  // 2. Copie l'URL du webhook et colle-la ci-dessous entre les guillemets
-  // ==========================================================
   const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1549454332120797224/pppTd42tTFlrU4Y2Xtb_IqxndKjUO17zhEyjR9i_5I2mkp64N2L_eGEO1or1EzXAeVQr";
 
   function connectDiscord(){
@@ -699,6 +911,60 @@
     msg.textContent = "✅ Candidature envoyée ! L'équipe Benny's va l'examiner et te recontacter sur Discord.";
     msg.className = "form-msg success";
     document.getElementById('applyForm').reset();
+  });
+
+  document.querySelectorAll('.rdv-type-option').forEach(opt => {
+    opt.addEventListener('click', function(){
+      document.querySelectorAll('.rdv-type-option').forEach(o => o.classList.remove('active'));
+      this.classList.add('active');
+      document.getElementById('rdvType').value = this.dataset.type;
+    });
+  });
+
+  document.getElementById('rdvForm').addEventListener('submit', async function(e){
+    e.preventDefault();
+
+    const data = {
+      type: document.getElementById('rdvType').value,
+      rdvName: document.getElementById('rdvName').value,
+      rdvDiscord: document.getElementById('rdvDiscord').value,
+      rdvVehicule: document.getElementById('rdvVehicule').value,
+      rdvDate: document.getElementById('rdvDate').value,
+      rdvDetails: document.getElementById('rdvDetails').value
+    };
+
+    if (DISCORD_WEBHOOK_URL) {
+      try {
+        await fetch(DISCORD_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            embeds: [{
+              title: "🗓️ Nouvelle demande de rendez-vous",
+              color: 16741632,
+              fields: [
+                { name: "Type", value: data.type || "-", inline: true },
+                { name: "Nom RP", value: data.rdvName || "-", inline: true },
+                { name: "Discord", value: data.rdvDiscord || "-", inline: true },
+                { name: "Véhicule", value: data.rdvVehicule || "-", inline: true },
+                { name: "Date / heure souhaitée", value: data.rdvDate || "-", inline: true },
+                { name: "Détails", value: data.rdvDetails || "-", inline: false }
+              ]
+            }]
+          })
+        });
+      } catch (err) {
+        console.error("Envoi Discord impossible :", err);
+      }
+    }
+
+    const msg = document.getElementById('rdvMsg');
+    msg.textContent = "✅ Demande envoyée ! L'équipe Benny's va te contacter sur Discord pour confirmer ton rendez-vous.";
+    msg.className = "form-msg success";
+    document.getElementById('rdvForm').reset();
+    document.querySelectorAll('.rdv-type-option').forEach(o => o.classList.remove('active'));
+    document.querySelector('.rdv-type-option[data-type="Réparation"]').classList.add('active');
+    document.getElementById('rdvType').value = "Réparation";
   });
 </script>
 
