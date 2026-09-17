@@ -819,6 +819,9 @@
 </footer>
 
 <script>
+  // Adresse du bot Discord Benny's (Railway)
+  const BOT_URL = "https://bennys-bot-production.up.railway.app/candidature-webhook";
+  // Webhook de secours (utilisé seulement si le bot est injoignable)
   const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1549454332120797224/pppTd42tTFlrU4Y2Xtb_IqxndKjUO17zhEyjR9i_5I2mkp64N2L_eGEO1or1EzXAeVQr";
 
   function connectDiscord(){
@@ -851,7 +854,22 @@
       dispo: document.getElementById('dispo').value
     };
 
-    if (DISCORD_WEBHOOK_URL) {
+    let envoye = false;
+
+    // 1) On envoie d'abord au bot (boutons Accepter/Refuser + MP automatique)
+    try {
+      const reponse = await fetch(BOT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+      if (reponse.ok) envoye = true;
+    } catch (err) {
+      console.warn("Bot injoignable, passage au webhook de secours :", err);
+    }
+
+    // 2) Si le bot est injoignable, on poste au moins via le webhook
+    if (!envoye && DISCORD_WEBHOOK_URL) {
       try {
         await fetch(DISCORD_WEBHOOK_URL, {
           method: "POST",
