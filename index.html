@@ -174,17 +174,6 @@
   }
   .hero-buttons{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;}
 
-  /* STRIP STATS */
-  .stats{
-    display:flex;justify-content:center;gap:60px;flex-wrap:wrap;
-    padding:36px 24px;
-    background:var(--dark);
-    border-bottom:1px solid #2a2a2e;
-  }
-  .stat{text-align:center;}
-  .stat b{display:block;font-size:2rem;color:var(--orange);font-weight:900;}
-  .stat span{color:var(--grey);font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;}
-
   /* SECTION GENERIC */
   section{padding:90px 24px;}
   .section-title{
@@ -251,13 +240,6 @@
   }
   .card h3{font-size:1.15rem;margin-bottom:10px;}
   .card p{color:var(--grey);font-size:0.92rem;}
-  .card .tag{
-    display:inline-block;margin-top:14px;
-    font-size:0.75rem;font-weight:700;
-    color:var(--orange);
-    text-transform:uppercase;
-    letter-spacing:1px;
-  }
 
   /* REQUIREMENTS */
   .req-grid{
@@ -784,12 +766,12 @@
       <div class="partner-card">
         <div class="p-icon">🍔</div>
         <h4>Burger Shot</h4>
-        <p>Restauration rapide de Los Santos</p>
+        <p>Partenaire officiel de Benny's</p>
       </div>
       <div class="partner-card">
         <div class="p-icon">🚔</div>
         <h4>BCSO</h4>
-        <p>Blaine County Sheriff's Office</p>
+        <p>Partenaire officiel de Benny's</p>
       </div>
       <div class="partner-card">
         <div class="p-icon">🤝</div>
@@ -839,14 +821,6 @@
 <script>
   const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1549454332120797224/pppTd42tTFlrU4Y2Xtb_IqxndKjUO17zhEyjR9i_5I2mkp64N2L_eGEO1or1EzXAeVQr";
 
-  // ==========================================================
-  // Bot Benny's : URL de ton bot une fois hébergé (ex: Railway/Render),
-  // + le même secret que celui mis dans le .env du bot (API_SECRET).
-  // Tant que ce n'est pas rempli, les candidatures repartent sur le webhook classique (sans boutons).
-  // ==========================================================
-  const BOT_API_URL = ""; // ex: "https://bennys-bot.up.railway.app/api/candidature"
-  const BOT_API_SECRET = ""; // doit être identique à API_SECRET dans le .env du bot
-
   function connectDiscord(){
     window.open("https://discord.gg/WZw8T2vHU", "_blank");
     document.getElementById('gateStep1').style.display = 'none';
@@ -877,20 +851,7 @@
       dispo: document.getElementById('dispo').value
     };
 
-    if (BOT_API_URL) {
-      try {
-        await fetch(BOT_API_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "x-api-secret": BOT_API_SECRET
-          },
-          body: JSON.stringify(data)
-        });
-      } catch (err) {
-        console.error("Envoi au bot impossible :", err);
-      }
-    } else if (DISCORD_WEBHOOK_URL) {
+    if (DISCORD_WEBHOOK_URL) {
       try {
         await fetch(DISCORD_WEBHOOK_URL, {
           method: "POST",
