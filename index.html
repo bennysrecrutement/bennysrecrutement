@@ -431,6 +431,27 @@
   .testimonial-card p.quote{color:var(--white);font-size:0.94rem;margin-bottom:16px;font-style:italic;}
   .testimonial-card .author{color:var(--grey);font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;}
 
+  /* MISE EN AVANT */
+  .mvp-grid{
+    display:grid;grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+    gap:22px;
+  }
+  .mvp-card{
+    background:linear-gradient(160deg, rgba(255,106,0,0.10), transparent 65%), var(--card);
+    border:1px solid #2a2a2e;border-radius:14px;
+    padding:28px 22px;text-align:center;
+    transition:transform .2s, border-color .2s;
+  }
+  .mvp-card:hover{transform:translateY(-6px);border-color:var(--orange);}
+  .mvp-card .mvp-icon{font-size:2rem;margin-bottom:10px;}
+  .mvp-card .mvp-title{
+    font-size:0.78rem;font-weight:700;text-transform:uppercase;
+    letter-spacing:1px;color:var(--orange);margin-bottom:10px;
+  }
+  .mvp-card .mvp-name{
+    font-size:1.1rem;font-weight:800;color:var(--white);
+  }
+
   /* RDV TYPE SELECT */
   .rdv-types{
     display:grid;grid-template-columns:repeat(3, 1fr);gap:12px;margin-bottom:20px;
@@ -495,6 +516,7 @@
       <a href="#rdv">Rendez-vous</a>
       <a href="#postuler">Candidature</a>
       <a href="#partenaires">Partenaires</a>
+      <a href="#equipe">Équipe</a>
       <a href="#avis">Avis</a>
     </div>
   </nav>
@@ -808,6 +830,39 @@
   </div>
 </section>
 
+<!-- ===== MISE EN AVANT ===== -->
+<section id="equipe">
+  <div class="container">
+    <div class="section-title">
+      <p class="eyebrow">Notre équipe</p>
+      <h2>Mise en avant</h2>
+      <p class="desc">Les membres de Benny's qui se sont distingués cette semaine.</p>
+    </div>
+    <div class="mvp-grid" id="mvpGrid">
+      <div class="mvp-card">
+        <div class="mvp-icon">👑</div>
+        <div class="mvp-title">Employé de la semaine</div>
+        <div class="mvp-name">—</div>
+      </div>
+      <div class="mvp-card">
+        <div class="mvp-icon">🔧</div>
+        <div class="mvp-title">Meilleur mécanicien</div>
+        <div class="mvp-name">—</div>
+      </div>
+      <div class="mvp-card">
+        <div class="mvp-icon">🚗</div>
+        <div class="mvp-title">Meilleur dépanneur</div>
+        <div class="mvp-name">—</div>
+      </div>
+      <div class="mvp-card">
+        <div class="mvp-icon">⭐</div>
+        <div class="mvp-title">Meilleure satisfaction client</div>
+        <div class="mvp-name">—</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== AVIS CLIENTS ===== -->
 <section id="avis" style="background:var(--dark);border-top:1px solid #2a2a2e;border-bottom:1px solid #2a2a2e;">
   <div class="container">
@@ -980,7 +1035,7 @@
   });
 
   // ==========================================================
-  //  Synchronisation des tarifs et partenaires publies
+  //  Synchronisation des tarifs, partenaires et mise en avant
   // ==========================================================
   const BOT_API = "https://bennys-bot-production.up.railway.app/api/tarifs";
 
@@ -1002,6 +1057,25 @@
         pg.innerHTML = d.partenaires.map(function(p){
           return '<div class="partner-card"><div class="p-icon">🤝</div><h4>' + p[0] + '</h4><p>' + p[1] + '</p></div>';
         }).join('');
+      }
+
+      // Mise en avant des employes (employe de la semaine, meilleurs...)
+      const mvp = d.miseEnAvant || {};
+      const cartes = [
+        ["👑", "Employé de la semaine", mvp.employeSemaine],
+        ["🔧", "Meilleur mécanicien", mvp.meilleurMecano],
+        ["🚗", "Meilleur dépanneur", mvp.meilleurDepanneur],
+        ["⭐", "Meilleure satisfaction client", mvp.meilleureSatisfaction]
+      ];
+      if (cartes.some(function(c){ return c[2]; })) {
+        const grille = document.getElementById('mvpGrid');
+        if (grille) {
+          grille.innerHTML = cartes.map(function(c){
+            return '<div class="mvp-card"><div class="mvp-icon">' + c[0] + '</div>' +
+                   '<div class="mvp-title">' + c[1] + '</div>' +
+                   '<div class="mvp-name">' + (c[2] || '—') + '</div></div>';
+          }).join('');
+        }
       }
     } catch (e) {
       // Bot injoignable : on garde les valeurs par defaut
