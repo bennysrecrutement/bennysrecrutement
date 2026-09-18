@@ -6,20 +6,20 @@
 <title>Benny's Original Motor Works | Recrutement</title>
 <style>
   :root{
-    --black:#070709;
-    --dark:#101014;
-    --card:#17171c;
-    --card-2:#1e1e25;
-    --line:#26262e;
-    --orange:#ff6a00;
-    --orange-light:#ff8c2e;
-    --orange-deep:#c74f00;
-    --grey:#8e8e99;
+    --black:#070609;
+    --dark:#100e14;
+    --card:#17141c;
+    --card-2:#1e1a25;
+    --line:#2a2432;
+    --orange:#8b5cf6;
+    --orange-light:#a78bfa;
+    --orange-deep:#6d28d9;
+    --grey:#8e8a99;
     --white:#f7f7f8;
     --discord:#5865F2;
     --discord-dark:#4752c4;
     --shadow:0 18px 50px rgba(0,0,0,.55);
-    --glow:0 0 0 1px rgba(255,106,0,.25), 0 20px 60px rgba(255,106,0,.10);
+    --glow:0 0 0 1px rgba(139,92,246,.25), 0 20px 60px rgba(139,92,246,.10);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -33,7 +33,7 @@
   ::selection{background:var(--orange);color:#0b0b0d;}
   ::-webkit-scrollbar{width:10px;}
   ::-webkit-scrollbar-track{background:var(--black);}
-  ::-webkit-scrollbar-thumb{background:#2b2b33;border-radius:6px;}
+  ::-webkit-scrollbar-thumb{background:#2b2733;border-radius:6px;}
   ::-webkit-scrollbar-thumb:hover{background:var(--orange-deep);}
   a{text-decoration:none;color:inherit;}
   .container{max-width:1180px;margin:0 auto;padding:0 24px;}
@@ -100,7 +100,7 @@
   /* NAVBAR */
   header{
     position:sticky;top:0;z-index:100;
-    background:rgba(7,7,9,.78);
+    background:rgba(7,6,9,.78);
     backdrop-filter:blur(14px) saturate(140%);
     border-bottom:1px solid var(--line);
   }
@@ -151,17 +151,17 @@
     letter-spacing:.3px;
     transition:transform .18s ease, box-shadow .25s ease, filter .2s;
     border:none;cursor:pointer;
-    box-shadow:0 8px 24px rgba(255,106,0,.28);
+    box-shadow:0 8px 24px rgba(139,92,246,.28);
   }
   .btn:hover{
     transform:translateY(-2px);
     filter:brightness(1.06);
-    box-shadow:0 14px 34px rgba(255,106,0,.42);
+    box-shadow:0 14px 34px rgba(139,92,246,.42);
   }
   .btn-outline{
     display:inline-block;
-    background:rgba(255,106,0,.06);
-    border:1.5px solid rgba(255,106,0,.55);
+    background:rgba(139,92,246,.06);
+    border:1.5px solid rgba(139,92,246,.55);
     color:var(--orange-light);
     padding:11px 26px;
     border-radius:10px;
@@ -177,8 +177,8 @@
     padding:150px 24px 130px;
     text-align:center;
     background:
-      radial-gradient(ellipse 70% 60% at 50% -10%, rgba(255,106,0,.22), transparent 70%),
-      radial-gradient(ellipse 40% 40% at 85% 20%, rgba(255,106,0,.08), transparent 70%),
+      radial-gradient(ellipse 70% 60% at 50% -10%, rgba(139,92,246,.22), transparent 70%),
+      radial-gradient(ellipse 40% 40% at 85% 20%, rgba(139,92,246,.08), transparent 70%),
       repeating-linear-gradient(115deg, rgba(255,255,255,.018) 0 1px, transparent 1px 46px),
       linear-gradient(180deg, var(--dark), var(--black));
     border-bottom:1px solid var(--line);
@@ -187,7 +187,7 @@
   .hero::before{
     content:"";position:absolute;left:50%;top:-40%;width:120%;height:120%;
     transform:translateX(-50%);
-    background:radial-gradient(closest-side, rgba(255,106,0,.10), transparent 75%);
+    background:radial-gradient(closest-side, rgba(139,92,246,.10), transparent 75%);
     pointer-events:none;
   }
   .hero::after{
@@ -199,14 +199,14 @@
   @keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
   .tagline-badge{
     display:inline-flex;align-items:center;gap:8px;
-    background:rgba(255,106,0,.10);
+    background:rgba(139,92,246,.10);
     color:var(--orange-light);
-    border:1px solid rgba(255,106,0,.45);
+    border:1px solid rgba(139,92,246,.45);
     padding:7px 20px;border-radius:999px;
     font-size:.75rem;font-weight:800;
     letter-spacing:1.8px;text-transform:uppercase;
     margin-bottom:26px;
-    box-shadow:0 0 30px rgba(255,106,0,.16) inset;
+    box-shadow:0 0 30px rgba(139,92,246,.16) inset;
   }
   .tagline-badge::before{
     content:"";width:7px;height:7px;border-radius:50%;
@@ -221,7 +221,7 @@
     text-shadow:0 10px 40px rgba(0,0,0,.6);
   }
   .hero h1 span{
-    background:linear-gradient(90deg,var(--orange),var(--orange-light) 60%,#ffb066);
+    background:linear-gradient(90deg,var(--orange),var(--orange-light) 60%,#c4b5fd);
     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
   }
   .hero p{
@@ -236,7 +236,7 @@
   .section-title{text-align:center;margin-bottom:60px;}
   .section-title p.eyebrow{
     display:inline-block;
-    color:var(--orange);
+    color:var(--orange-light);
     text-transform:uppercase;letter-spacing:3px;
     font-weight:800;font-size:.76rem;
     margin-bottom:14px;
@@ -269,10 +269,10 @@
   }
   .about-grid .panel::before{
     content:"";position:absolute;top:-60px;right:-60px;width:160px;height:160px;
-    background:radial-gradient(circle, rgba(255,106,0,.18), transparent 70%);
+    background:radial-gradient(circle, rgba(139,92,246,.18), transparent 70%);
     pointer-events:none;
   }
-  .about-grid h3{font-size:1.5rem;margin-bottom:16px;color:var(--orange);}
+  .about-grid h3{font-size:1.5rem;margin-bottom:16px;color:var(--orange-light);}
   .about-grid p{color:var(--grey);}
   .about-list{list-style:none;margin-top:20px;}
   .about-list li{
@@ -285,7 +285,7 @@
   .about-list li::before{
     content:"✓";
     position:absolute;left:0;top:10px;
-    color:var(--orange);font-weight:900;
+    color:var(--orange-light);font-weight:900;
   }
 
   /* POSITIONS */
@@ -310,18 +310,18 @@
   }
   .card:hover{
     transform:translateY(-8px);
-    border-color:rgba(255,106,0,.5);
+    border-color:rgba(139,92,246,.5);
     box-shadow:var(--shadow);
   }
   .card:hover::before{opacity:1;}
   .card .icon{
     width:54px;height:54px;
-    background:radial-gradient(circle at 30% 25%, rgba(255,106,0,.30), rgba(255,106,0,.06));
-    border:1px solid rgba(255,106,0,.45);
+    background:radial-gradient(circle at 30% 25%, rgba(139,92,246,.30), rgba(139,92,246,.06));
+    border:1px solid rgba(139,92,246,.45);
     border-radius:14px;
     display:flex;align-items:center;justify-content:center;
     font-size:1.5rem;margin-bottom:18px;
-    box-shadow:0 8px 22px rgba(255,106,0,.14);
+    box-shadow:0 8px 22px rgba(139,92,246,.14);
   }
   .card h3{font-size:1.15rem;margin-bottom:10px;letter-spacing:-.2px;}
   .card p{color:var(--grey);font-size:0.92rem;}
@@ -339,9 +339,9 @@
     border:1px solid var(--line);
     transition:transform .25s ease, border-color .25s;
   }
-  .req-item:hover{transform:translateY(-6px);border-color:rgba(255,106,0,.45);}
+  .req-item:hover{transform:translateY(-6px);border-color:rgba(139,92,246,.45);}
   .req-item .num{
-    font-size:2rem;font-weight:900;color:var(--orange);
+    font-size:2rem;font-weight:900;color:var(--orange-light);
     margin-bottom:10px;
   }
   .req-item p{color:var(--grey);font-size:0.9rem;}
@@ -360,7 +360,7 @@
     position:relative;
     transition:transform .25s ease, border-color .25s;
   }
-  .step:hover{transform:translateY(-6px);border-color:rgba(255,106,0,.45);}
+  .step:hover{transform:translateY(-6px);border-color:rgba(139,92,246,.45);}
   .step .step-num{
     width:40px;height:40px;
     border-radius:12px;
@@ -368,7 +368,7 @@
     color:#0b0b0d;
     display:flex;align-items:center;justify-content:center;
     font-weight:900;margin-bottom:18px;
-    box-shadow:0 8px 22px rgba(255,106,0,.30);
+    box-shadow:0 8px 22px rgba(139,92,246,.30);
   }
   .step h4{margin-bottom:8px;font-size:1.05rem;}
   .step p{color:var(--grey);font-size:0.88rem;}
@@ -397,7 +397,7 @@
   .form-row select,
   .form-row textarea{
     width:100%;
-    background:rgba(7,7,9,.75);
+    background:rgba(7,6,9,.75);
     border:1px solid var(--line);
     border-radius:10px;
     padding:13px 15px;
@@ -406,14 +406,14 @@
     font-size:0.95rem;
     transition:border-color .2s, box-shadow .2s, background .2s;
   }
-  .form-row input::placeholder,.form-row textarea::placeholder{color:#5d5d68;}
+  .form-row input::placeholder,.form-row textarea::placeholder{color:#5d5a68;}
   .form-row input:focus,
   .form-row select:focus,
   .form-row textarea:focus{
     outline:none;
     border-color:var(--orange);
-    background:rgba(7,7,9,.95);
-    box-shadow:0 0 0 4px rgba(255,106,0,.12);
+    background:rgba(7,6,9,.95);
+    box-shadow:0 0 0 4px rgba(139,92,246,.12);
   }
   .form-row textarea{resize:vertical;min-height:90px;}
   .form-grid-2{
@@ -440,9 +440,9 @@
   .cta{
     text-align:center;
     background:
-      radial-gradient(ellipse 60% 100% at 50% 0%, rgba(255,106,0,.18), transparent 70%),
+      radial-gradient(ellipse 60% 100% at 50% 0%, rgba(139,92,246,.18), transparent 70%),
       linear-gradient(165deg, var(--card-2), var(--card));
-    border:1px solid rgba(255,106,0,.45);
+    border:1px solid rgba(139,92,246,.45);
     border-radius:22px;
     padding:64px 30px;
     margin:0 24px;
@@ -463,9 +463,9 @@
     color:var(--grey);
     font-size:0.85rem;
     border-top:1px solid var(--line);
-    background:linear-gradient(180deg, transparent, rgba(255,106,0,.03));
+    background:linear-gradient(180deg, transparent, rgba(139,92,246,.03));
   }
-  footer .foot-logo{color:var(--orange);font-weight:800;}
+  footer .foot-logo{color:var(--orange-light);font-weight:800;}
 
   @media (max-width:800px){
     .nav-top{flex-direction:column;align-items:flex-start;gap:12px;}
@@ -494,7 +494,7 @@
   }
   .tarif-card:hover{
     transform:translateY(-8px);
-    border-color:rgba(255,106,0,.5);
+    border-color:rgba(139,92,246,.5);
     box-shadow:var(--shadow);
   }
   .tarif-card .price{
@@ -518,7 +518,7 @@
     padding:36px 20px;text-align:center;color:var(--grey);
     transition:transform .25s ease, border-color .25s;
   }
-  .partner-card:hover{transform:translateY(-6px);border-color:rgba(255,106,0,.4);}
+  .partner-card:hover{transform:translateY(-6px);border-color:rgba(139,92,246,.4);}
   .partner-card .p-icon{font-size:1.8rem;margin-bottom:10px;}
   .partner-card h4{color:var(--white);font-size:0.95rem;margin-bottom:6px;}
   .partner-card p{font-size:0.82rem;}
@@ -537,12 +537,12 @@
     padding:30px 26px;position:relative;
     transition:transform .25s ease, border-color .25s;
   }
-  .testimonial-card:hover{transform:translateY(-6px);border-color:rgba(255,106,0,.4);}
+  .testimonial-card:hover{transform:translateY(-6px);border-color:rgba(139,92,246,.4);}
   .testimonial-card::before{
     content:"\201C";position:absolute;top:10px;right:22px;
-    font-size:3.4rem;line-height:1;color:rgba(255,106,0,.16);font-family:Georgia,serif;
+    font-size:3.4rem;line-height:1;color:rgba(139,92,246,.16);font-family:Georgia,serif;
   }
-  .testimonial-card .stars{color:var(--orange);margin-bottom:14px;font-size:0.95rem;letter-spacing:2px;}
+  .testimonial-card .stars{color:var(--orange-light);margin-bottom:14px;font-size:0.95rem;letter-spacing:2px;}
   .testimonial-card p.quote{color:var(--white);font-size:0.94rem;margin-bottom:16px;font-style:italic;}
   .testimonial-card .author{color:var(--grey);font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;}
 
@@ -553,7 +553,7 @@
   }
   .mvp-card{
     background:
-      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,106,0,.14), transparent 70%),
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(139,92,246,.14), transparent 70%),
       linear-gradient(165deg, var(--card-2), var(--card));
     border:1px solid var(--line);border-radius:18px;
     padding:32px 22px;text-align:center;
@@ -561,13 +561,13 @@
   }
   .mvp-card:hover{
     transform:translateY(-8px);
-    border-color:rgba(255,106,0,.5);
+    border-color:rgba(139,92,246,.5);
     box-shadow:var(--shadow);
   }
   .mvp-card .mvp-icon{font-size:2rem;margin-bottom:10px;}
   .mvp-card .mvp-title{
     font-size:0.78rem;font-weight:700;text-transform:uppercase;
-    letter-spacing:1px;color:var(--orange);margin-bottom:10px;
+    letter-spacing:1px;color:var(--orange-light);margin-bottom:10px;
   }
   .mvp-card .mvp-name{
     font-size:1.1rem;font-weight:800;color:var(--white);
@@ -578,14 +578,14 @@
     display:grid;grid-template-columns:repeat(3, 1fr);gap:12px;margin-bottom:20px;
   }
   .rdv-type-option{
-    background:rgba(7,7,9,.7);border:1px solid var(--line);border-radius:12px;
+    background:rgba(7,6,9,.7);border:1px solid var(--line);border-radius:12px;
     padding:16px 10px;text-align:center;cursor:pointer;font-size:0.85rem;font-weight:700;
     transition:border-color .2s, color .2s, background .2s;color:var(--grey);
   }
-  .rdv-type-option:hover{border-color:rgba(255,106,0,.4);}
+  .rdv-type-option:hover{border-color:rgba(139,92,246,.4);}
   .rdv-type-option.active{
     border-color:var(--orange);color:var(--orange-light);
-    background:rgba(255,106,0,.08);
+    background:rgba(139,92,246,.08);
   }
   @media (max-width:600px){
     .rdv-types{grid-template-columns:1fr;}
@@ -617,7 +617,7 @@
 
     <div id="gateStep2" style="display:none;">
       <p>Tu as rejoint le serveur Discord ? Clique ci-dessous pour accéder au site.</p>
-      <button class="btn-discord" onclick="enterSite()" style="background:var(--orange);color:#0b0b0d;">
+      <button class="btn-discord" onclick="enterSite()" style="background:var(--orange);color:#fff;">
         ✅ Accéder au site
       </button>
       <p class="gate-skip" onclick="backToStep1()">Retour</p>
@@ -1019,7 +1019,7 @@
 <footer>
   <p><span class="foot-logo">BENNY'S ORIGINAL MOTOR WORKS</span> — Serveur GTA RP</p>
   <p>Ce site est un projet de fan / communauté, non affilié à Rockstar Games ni à Discord Inc.</p>
-  <p style="margin-top:14px;"><a href="https://bennys-bot-production.up.railway.app/staff" target="_blank" rel="noopener" style="color:var(--orange);font-weight:600;">🔒 Espace Staff — Direction Benny's</a></p>
+  <p style="margin-top:14px;"><a href="https://bennys-bot-production.up.railway.app/staff" target="_blank" rel="noopener" style="color:var(--orange-light);font-weight:600;">🔒 Espace Staff — Direction Benny's</a></p>
 </footer>
 
 <script>
@@ -1081,7 +1081,7 @@
           body: JSON.stringify({
             embeds: [{
               title: "🔧 Nouvelle candidature Benny's",
-              color: 16741632,
+              color: 9146614,
               fields: [
                 { name: "Nom RP", value: data.rpName || "-", inline: true },
                 { name: "Discord", value: data.discordTag || "-", inline: true },
@@ -1133,7 +1133,7 @@
           body: JSON.stringify({
             embeds: [{
               title: "🗓️ Nouvelle demande de rendez-vous",
-              color: 16741632,
+              color: 9146614,
               fields: [
                 { name: "Type", value: data.type || "-", inline: true },
                 { name: "Nom RP", value: data.rdvName || "-", inline: true },
