@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Benny's Original Motor Works | Recrutement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
     --black:#070609;
@@ -120,13 +123,10 @@
     color:var(--white);white-space:nowrap;line-height:1.15;
     display:flex;align-items:center;gap:10px;
   }
-  .logo::before{
-    content:"";width:8px;height:8px;border-radius:50%;
-    background:var(--orange);box-shadow:0 0 14px var(--orange);
-    flex-shrink:0;
-  }
-  .logo span{
-    color:var(--orange);
+  .logo-mark{width:34px;height:34px;flex-shrink:0;filter:drop-shadow(0 4px 12px rgba(139,92,246,.35));}
+  .logo-txt{display:inline-block;}
+  .logo-txt em{
+    font-style:normal;color:var(--orange);
     background:linear-gradient(90deg,var(--orange),var(--orange-light));
     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
   }
@@ -196,6 +196,15 @@
     pointer-events:none;
   }
   .hero-content{position:relative;z-index:2;animation:fadeUp .8s ease both;}
+
+  /* Effet de lueur qui suit la souris */
+  .hero-glow{
+    position:absolute;width:520px;height:520px;border-radius:50%;
+    background:radial-gradient(circle, rgba(139,92,246,.22), transparent 70%);
+    pointer-events:none;filter:blur(40px);
+    transform:translate(-50%,-50%);left:50%;top:50%;
+    transition:opacity .4s;z-index:1;
+  }
   @keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
   .tagline-badge{
     display:inline-flex;align-items:center;gap:8px;
@@ -214,6 +223,15 @@
     animation:pulse 2s infinite;
   }
   @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+  .tagline-badge.ferme{
+    background:rgba(192,57,43,.10);
+    color:#e8726a;
+    border-color:rgba(192,57,43,.55);
+    box-shadow:0 0 30px rgba(192,57,43,.16) inset;
+  }
+  .tagline-badge.ferme::before{
+    background:#c0392b;box-shadow:0 0 10px #c0392b;animation:none;
+  }
   .hero h1{
     font-size:clamp(2.2rem, 6vw, 4rem);
     font-weight:900;letter-spacing:-1px;line-height:1.05;
@@ -229,6 +247,33 @@
     color:var(--grey);font-size:1.12rem;
   }
   .hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+
+  /* Reveal au scroll */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1);}
+  .reveal.visible{opacity:1;transform:none;}
+  .reveal-d1{transition-delay:.08s;} .reveal-d2{transition-delay:.16s;}
+  .reveal-d3{transition-delay:.24s;} .reveal-d4{transition-delay:.32s;}
+
+  /* Barre de progression de lecture */
+  #progressBar{
+    position:fixed;top:0;left:0;height:3px;width:0;z-index:200;
+    background:linear-gradient(90deg,var(--orange-deep),var(--orange),var(--orange-light));
+    box-shadow:0 0 12px rgba(139,92,246,.6);
+    transition:width .1s linear;
+  }
+
+  /* Bouton retour en haut */
+  #backTop{
+    position:fixed;right:22px;bottom:22px;z-index:150;
+    width:46px;height:46px;border-radius:14px;border:none;cursor:pointer;
+    background:linear-gradient(180deg,var(--orange-light),var(--orange));
+    color:#0b0b0d;font-size:1.2rem;font-weight:900;
+    box-shadow:0 10px 30px rgba(139,92,246,.35);
+    opacity:0;visibility:hidden;transform:translateY(10px);
+    transition:opacity .3s, visibility .3s, transform .3s;
+  }
+  #backTop.show{opacity:1;visibility:visible;transform:none;}
+  #backTop:hover{filter:brightness(1.08);}
 
   /* SECTION GENERIC */
   section{padding:100px 24px;position:relative;}
@@ -374,6 +419,17 @@
   .step p{color:var(--grey);font-size:0.88rem;}
 
   /* APPLICATION FORM */
+  .recrutement-ferme{
+    display:none;
+    max-width:660px;margin:0 auto;text-align:center;
+    background:linear-gradient(170deg, var(--card-2), var(--card));
+    border:1px solid rgba(192,57,43,.45);border-radius:20px;
+    padding:52px 34px;
+  }
+  .recrutement-ferme .rf-icon{font-size:2.6rem;margin-bottom:14px;}
+  .recrutement-ferme h3{font-size:1.35rem;margin-bottom:10px;}
+  .recrutement-ferme p{color:var(--grey);margin:0 0 18px;}
+
   .form-wrap{
     max-width:660px;margin:0 auto;
     background:linear-gradient(170deg, var(--card-2), var(--card) 60%);
@@ -526,26 +582,6 @@
     text-align:center;margin-top:34px;
   }
 
-  /* AVIS CLIENTS */
-  .testimonials-grid{
-    display:grid;grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
-    gap:24px;
-  }
-  .testimonial-card{
-    background:linear-gradient(165deg, var(--card-2), var(--card));
-    border:1px solid var(--line);border-radius:16px;
-    padding:30px 26px;position:relative;
-    transition:transform .25s ease, border-color .25s;
-  }
-  .testimonial-card:hover{transform:translateY(-6px);border-color:rgba(139,92,246,.4);}
-  .testimonial-card::before{
-    content:"\201C";position:absolute;top:10px;right:22px;
-    font-size:3.4rem;line-height:1;color:rgba(139,92,246,.16);font-family:Georgia,serif;
-  }
-  .testimonial-card .stars{color:var(--orange-light);margin-bottom:14px;font-size:0.95rem;letter-spacing:2px;}
-  .testimonial-card p.quote{color:var(--white);font-size:0.94rem;margin-bottom:16px;font-style:italic;}
-  .testimonial-card .author{color:var(--grey);font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;}
-
   /* MISE EN AVANT */
   .mvp-grid{
     display:grid;grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
@@ -573,6 +609,26 @@
     font-size:1.1rem;font-weight:800;color:var(--white);
   }
 
+  /* AVIS CLIENTS */
+  .testimonials-grid{
+    display:grid;grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+    gap:24px;
+  }
+  .testimonial-card{
+    background:linear-gradient(165deg, var(--card-2), var(--card));
+    border:1px solid var(--line);border-radius:16px;
+    padding:30px 26px;position:relative;
+    transition:transform .25s ease, border-color .25s;
+  }
+  .testimonial-card:hover{transform:translateY(-6px);border-color:rgba(139,92,246,.4);}
+  .testimonial-card::before{
+    content:"\201C";position:absolute;top:10px;right:22px;
+    font-size:3.4rem;line-height:1;color:rgba(139,92,246,.16);font-family:Georgia,serif;
+  }
+  .testimonial-card .stars{color:var(--orange-light);margin-bottom:14px;font-size:0.95rem;letter-spacing:2px;}
+  .testimonial-card p.quote{color:var(--white);font-size:0.94rem;margin-bottom:16px;font-style:italic;}
+  .testimonial-card .author{color:var(--grey);font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;}
+
   /* RDV TYPE SELECT */
   .rdv-types{
     display:grid;grid-template-columns:repeat(3, 1fr);gap:12px;margin-bottom:20px;
@@ -593,6 +649,9 @@
 </style>
 </head>
 <body>
+
+<div id="progressBar"></div>
+<button id="backTop" title="Haut de page">↑</button>
 
 <!-- ===== DISCORD LOGIN GATE ===== -->
 <div id="discordGate">
@@ -628,7 +687,17 @@
 <header>
   <nav>
     <div class="nav-top">
-      <div class="logo">BENNY'S <span>ORIGINAL MOTOR WORKS</span></div>
+      <div class="logo">
+        <svg class="logo-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M16 2 L28 9 V23 L16 30 L4 23 V9 Z" fill="none" stroke="url(#gz)" stroke-width="2"/>
+          <path d="M16 9 L23 13 V19 L16 23 L9 19 V13 Z" fill="url(#gz)" opacity=".22"/>
+          <circle cx="16" cy="16" r="3" fill="url(#gz)"/>
+          <defs><linearGradient id="gz" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#6d28d9"/>
+          </linearGradient></defs>
+        </svg>
+        <span class="logo-txt">BENNY'S <em>ORIGINAL MOTOR WORKS</em></span>
+      </div>
       <div class="nav-actions">
         <a href="https://bennys-bot-production.up.railway.app/staff" target="_blank" rel="noopener" class="btn-outline">Espace Staff</a>
         <a href="#postuler" class="btn">Postuler</a>
@@ -648,8 +717,9 @@
 </header>
 
 <section class="hero">
+  <div class="hero-glow" id="heroGlow"></div>
   <div class="hero-content">
-    <span class="tagline-badge">Recrutement ouvert — Los Santos RP</span>
+    <span class="tagline-badge" id="badgeRecrutement">Recrutement ouvert — Los Santos RP</span>
     <h1>Rejoins l'équipe <span>Benny's</span></h1>
     <p>Le garage le plus respecté de Los Santos recrute des mécaniciens motivés, du débutant au chef d'équipe. Passion RP, sérieux et esprit d'équipe exigés.</p>
     <div class="hero-buttons">
@@ -682,7 +752,6 @@
     </div>
   </div>
 </section>
-
 
 <section id="tarifs">
   <div class="container">
@@ -817,7 +886,14 @@
       <p class="desc">Remplis ce formulaire directement depuis le site — ta candidature est envoyée à l'équipe de recrutement.</p>
     </div>
 
-    <div class="form-wrap">
+    <div class="recrutement-ferme" id="recrutementFerme">
+      <div class="rf-icon">🔒</div>
+      <h3>Le recrutement est fermé</h3>
+      <p>Nous ne prenons pas de nouvelles candidatures pour le moment. Reviens plus tard, ou rejoins notre Discord pour être prévenu de la réouverture.</p>
+      <a href="https://discord.gg/WZw8T2vHU" target="_blank" rel="noopener" class="btn btn-outline">Rejoindre le Discord</a>
+    </div>
+
+    <div class="form-wrap" id="formCandidature">
       <form id="applyForm">
         <div class="form-grid-2">
           <div class="form-row">
@@ -858,7 +934,6 @@
     </div>
   </div>
 </section>
-
 
 <!-- ===== APPOINTMENT / RDV FORM ===== -->
 <section id="rdv">
@@ -922,7 +997,6 @@
     </div>
   </div>
 </section>
-
 
 <!-- ===== PARTENAIRES ===== -->
 <section id="partenaires">
@@ -1023,9 +1097,7 @@
 </footer>
 
 <script>
-  // Adresse du bot Discord Benny's (Railway)
   const BOT_URL = "https://bennys-bot-production.up.railway.app/candidature-webhook";
-  // Webhook de secours (utilisé seulement si le bot est injoignable)
   const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1549454332120797224/pppTd42tTFlrU4Y2Xtb_IqxndKjUO17zhEyjR9i_5I2mkp64N2L_eGEO1or1EzXAeVQr";
 
   function connectDiscord(){
@@ -1047,7 +1119,6 @@
 
   document.getElementById('applyForm').addEventListener('submit', async function(e){
     e.preventDefault();
-
     const data = {
       rpName: document.getElementById('rpName').value,
       discordTag: document.getElementById('discordTag').value,
@@ -1057,10 +1128,7 @@
       motivation: document.getElementById('motivation').value,
       dispo: document.getElementById('dispo').value
     };
-
     let envoye = false;
-
-    // 1) On envoie d'abord au bot (boutons Accepter/Refuser + MP automatique)
     try {
       const reponse = await fetch(BOT_URL, {
         method: "POST",
@@ -1068,11 +1136,7 @@
         body: JSON.stringify(data)
       });
       if (reponse.ok) envoye = true;
-    } catch (err) {
-      console.warn("Bot injoignable, passage au webhook de secours :", err);
-    }
-
-    // 2) Si le bot est injoignable, on poste au moins via le webhook
+    } catch (err) { console.warn("Bot injoignable :", err); }
     if (!envoye && DISCORD_WEBHOOK_URL) {
       try {
         await fetch(DISCORD_WEBHOOK_URL, {
@@ -1094,11 +1158,8 @@
             }]
           })
         });
-      } catch (err) {
-        console.error("Envoi Discord impossible :", err);
-      }
+      } catch (err) { console.error("Envoi Discord impossible :", err); }
     }
-
     const msg = document.getElementById('formMsg');
     msg.textContent = "✅ Candidature envoyée ! L'équipe Benny's va l'examiner et te recontacter sur Discord.";
     msg.className = "form-msg success";
@@ -1115,7 +1176,6 @@
 
   document.getElementById('rdvForm').addEventListener('submit', async function(e){
     e.preventDefault();
-
     const data = {
       type: document.getElementById('rdvType').value,
       rdvName: document.getElementById('rdvName').value,
@@ -1124,7 +1184,6 @@
       rdvDate: document.getElementById('rdvDate').value,
       rdvDetails: document.getElementById('rdvDetails').value
     };
-
     if (DISCORD_WEBHOOK_URL) {
       try {
         await fetch(DISCORD_WEBHOOK_URL, {
@@ -1145,11 +1204,8 @@
             }]
           })
         });
-      } catch (err) {
-        console.error("Envoi Discord impossible :", err);
-      }
+      } catch (err) { console.error("Envoi Discord impossible :", err); }
     }
-
     const msg = document.getElementById('rdvMsg');
     msg.textContent = "✅ Demande envoyée ! L'équipe Benny's va te contacter sur Discord pour confirmer ton rendez-vous.";
     msg.className = "form-msg success";
@@ -1160,7 +1216,7 @@
   });
 
   // ==========================================================
-  //  Synchronisation des tarifs, partenaires et mise en avant
+  //  Synchronisation tarifs / partenaires / mise en avant / recrutement
   // ==========================================================
   const BOT_API = "https://bennys-bot-production.up.railway.app/api/tarifs";
 
@@ -1184,7 +1240,23 @@
         }).join('');
       }
 
-      // Mise en avant des employes (employe de la semaine, meilleurs...)
+      const badge = document.getElementById('badgeRecrutement');
+      const formCand = document.getElementById('formCandidature');
+      const blocFerme = document.getElementById('recrutementFerme');
+      if (badge) {
+        if (d.recrutement === false) {
+          badge.textContent = "Recrutement fermé — Los Santos RP";
+          badge.classList.add('ferme');
+          if (formCand) formCand.style.display = 'none';
+          if (blocFerme) blocFerme.style.display = 'block';
+        } else {
+          badge.textContent = "Recrutement ouvert — Los Santos RP";
+          badge.classList.remove('ferme');
+          if (formCand) formCand.style.display = '';
+          if (blocFerme) blocFerme.style.display = 'none';
+        }
+      }
+
       const mvp = d.miseEnAvant || {};
       const cartes = [
         ["👑", "Employé de la semaine", mvp.employeSemaine],
@@ -1202,12 +1274,58 @@
           }).join('');
         }
       }
-    } catch (e) {
-      // Bot injoignable : on garde les valeurs par defaut
-    }
+    } catch (e) {}
   }
 
   chargerTarifsPublies();
+
+  // ---------- Reveal au scroll ----------
+  const cibles = document.querySelectorAll(
+    '.section-title, .card, .tarif-card, .partner-card, .mvp-card, .testimonial-card, .step, .req-item, .panel, .form-wrap'
+  );
+  cibles.forEach(function (el, i) {
+    el.classList.add('reveal');
+    if (i % 4 === 1) el.classList.add('reveal-d1');
+    if (i % 4 === 2) el.classList.add('reveal-d2');
+    if (i % 4 === 3) el.classList.add('reveal-d3');
+  });
+
+  const observateur = new IntersectionObserver(function (entrees) {
+    entrees.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observateur.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  cibles.forEach(function (el) { observateur.observe(el); });
+
+  // ---------- Lueur qui suit la souris dans le hero ----------
+  const hero = document.querySelector('.hero');
+  const lueur = document.getElementById('heroGlow');
+  if (hero && lueur) {
+    hero.addEventListener('mousemove', function (ev) {
+      const r = hero.getBoundingClientRect();
+      lueur.style.left = (ev.clientX - r.left) + 'px';
+      lueur.style.top = (ev.clientY - r.top) + 'px';
+    });
+  }
+
+  // ---------- Barre de progression + bouton haut de page ----------
+  const barre = document.getElementById('progressBar');
+  const btnTop = document.getElementById('backTop');
+  function majScroll() {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    const p = h > 0 ? (window.scrollY / h) * 100 : 0;
+    if (barre) barre.style.width = p + '%';
+    if (btnTop) {
+      if (window.scrollY > 500) btnTop.classList.add('show');
+      else btnTop.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll', majScroll, { passive: true });
+  majScroll();
+  if (btnTop) btnTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 </script>
 
 </body>
